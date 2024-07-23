@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ExtractImageFromPDF" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="666.0000000000001,1873" sap2010:WorkflowViewState.IdRef="ExtractImageFromPDF_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractImageFromPDF" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="598,1909" sap2010:WorkflowViewState.IdRef="ExtractImageFromPDF_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -141,7 +141,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractInvoiceReportUsingPDF" sap:VirtualizedContainerService.HintSize="608,1808" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="ExtractInvoiceReportUsingPDF" sap:VirtualizedContainerService.HintSize="608,1844" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="ShippingMail" />
       <Variable x:TypeArguments="sd2:DataTable" Name="dt_ShippingMails" />
@@ -157,6 +157,7 @@
       <Variable x:TypeArguments="x:Boolean" Name="Result" />
       <Variable x:TypeArguments="x:String" Name="inputPath" />
       <Variable x:TypeArguments="x:String" Name="outputPath_img" />
+      <Variable x:TypeArguments="x:String" Name="imgText" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -186,7 +187,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.pdf" Folder="[inputPath]" sap:VirtualizedContainerService.HintSize="546,1407" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.pdf" Folder="[inputPath]" sap:VirtualizedContainerService.HintSize="546,1415" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -195,15 +196,16 @@
           <ActivityAction.Argument2>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
           </ActivityAction.Argument2>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="512,1111" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="512,1119" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <WriteLine DisplayName="Write Current pdf file path" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[CurrentFile.FullName]" />
             <upap:ExtractImagesFromPDF DisplayName="Extract Images From PDF" FileName="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="ExtractImagesFromPDF_7" OutputFolderName="[outputPath_img]" />
-            <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.png" Folder="[outputPath_img]" sap:VirtualizedContainerService.HintSize="450,785" sap2010:WorkflowViewState.IdRef="ForEachFileX_4" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+            <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.png" Folder="[outputPath_img]" sap:VirtualizedContainerService.HintSize="450,793" sap2010:WorkflowViewState.IdRef="ForEachFileX_4" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
               <ui:ForEachFileX.Body>
                 <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
                   <ActivityAction.Argument1>
@@ -212,9 +214,11 @@
                   <ActivityAction.Argument2>
                     <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
                   </ActivityAction.Argument2>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,498" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,506" sap2010:WorkflowViewState.IdRef="Sequence_14">
                     <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="imgText" />
+                      <Variable x:TypeArguments="ui:Image" Name="loadImage" />
+                      <Variable x:TypeArguments="x:String" Name="strInvoiceExtracted" />
+                      <Variable x:TypeArguments="ui:Image" Name="imageInvoice" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -222,44 +226,17 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'list  viewerFlipView'" sap:VirtualizedContainerService.HintSize="354,244" sap2010:WorkflowViewState.IdRef="GetOCRText_3">
-                      <ui:GetOCRText.OCREngine>
-                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                          <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                          </ActivityFunc.Argument>
-                          <p:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Screen OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_1" Image="[Image]" Language="auto" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" />
-                        </ActivityFunc>
-                      </ui:GetOCRText.OCREngine>
-                      <ui:GetOCRText.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e31b2c58-b45c-43f5-86a7-7b4b6215f74d" InformativeScreenshot="303ec53aae7ffa87d1d685d8efc47c2d" Selector="&lt;html app='firefox.exe' title='INV_23456743_IMG.1.1.png (PNG Image, 631 × 759 pixels) — Scaled (81%)' /&gt;&lt;webctrl tag='IMG' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:GetOCRText.Target>
-                      <ui:GetOCRText.Text>
-                        <OutArgument x:TypeArguments="x:String">[imgText]</OutArgument>
-                      </ui:GetOCRText.Text>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:GetOCRText>
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Img extract text" sap:VirtualizedContainerService.HintSize="354,118" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[imgText]" />
-                    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="PdfExtract_Output\img_pdf\img_extract_text\img_extract.txt" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="WriteTextFile_5" Text="[imgText]">
+                    <ui:LoadImage DisplayName="Load Image" FileName="[CurrentImage.FullName]" sap:VirtualizedContainerService.HintSize="354,118" sap2010:WorkflowViewState.IdRef="LoadImage_2" Image="[imageInvoice]" />
+                    <p:UiPathDocumentOCR Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" UseLocalServer="{x:Null}" ApiKey="CJm9V6cKrk9vmJOIZt4YDYfawq1cMRyZj69itED8I+R1bd3IqNgo1pngsgmGQj4fKIHrXe9dp/RnP7Hc4oHg3g==" ComputeSkewAngle="False" DisplayName="UiPath Document OCR" ExtractWords="True" sap:VirtualizedContainerService.HintSize="354,57" sap2010:WorkflowViewState.IdRef="UiPathDocumentOCR_5" Image="[imageInvoice]" Language="auto" NoopExecution="False" Profile="None" Scale="1" Text="[strInvoiceExtracted]" Timeout="100000" />
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Msg Box - Img extract text" sap:VirtualizedContainerService.HintSize="354,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[strInvoiceExtracted.ToString]">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                    </ui:WriteTextFile>
+                    </ui:MessageBox>
+                    <ui:AppendLine File="{x:Null}" DisplayName="Append Line" FileName="PdfExtract_Output\img_pdf\img_extract_text\img_extract.txt" sap:VirtualizedContainerService.HintSize="354,158" sap2010:WorkflowViewState.IdRef="AppendLine_2" Text="[strInvoiceExtracted]" UseDefaultEncoding="False" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachFileX.Body>
@@ -307,7 +284,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="546,48" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="546,76" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,244" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
